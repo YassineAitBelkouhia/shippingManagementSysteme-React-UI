@@ -13,6 +13,7 @@ function App() {
     axios
       .post("http://localhost:5000/drivers/login", { email: email })
       .then((response) => {
+        localStorage.setItem("driver", response.data._id);
         axios
           .get(`http://localhost:5000/drivers/${response.data._id}/deliveries`)
           .then((response) => {

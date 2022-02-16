@@ -3,6 +3,6 @@ import Delivery from "./Delivery";
 
 export default function Deliveries({ deliveries }) {
   return deliveries.map((delivery) => {
-    return <Delivery delivery={delivery} />;
+    return <Delivery key={delivery._id} delivery={delivery} />;
   });
 }

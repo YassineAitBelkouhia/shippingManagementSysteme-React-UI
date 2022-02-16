@@ -1,6 +1,17 @@
 import React from "react";
+import axios from "axios";
 
 export default function Delivery({ delivery }) {
+  function claimDelivery() {
+    let driverId = localStorage.getItem("driver");
+    axios
+      .get(`http://localhost:5000/drivers/${driverId}/claim/${delivery._id}`)
+      .then((response) => {
+        console.log(response.data);
+        window.location.reload(false);
+      });
+  }
+
   return (
     <div
       style={{
@@ -19,8 +30,8 @@ export default function Delivery({ delivery }) {
       <h4>Country : {delivery.destination.country}</h4>
       <h4>Address : {delivery.destination.address}</h4>
       <h4>Weight : {delivery.weight}KG</h4>
-
       <button
+        onClick={claimDelivery}
         style={{
           width: "100px",
           margin: "auto",
